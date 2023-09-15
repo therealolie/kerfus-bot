@@ -2,7 +2,8 @@ const Replies = require('/home/runner/kerfus-bot/funcs/pastas.js');
 
 
 exports.run = (msg,client) => {
-  if(msg.guild==1121125014096318615n)return;
+  if(!msg.guild)return;
+  if(msg.guild.id=="1121125014096318615")return;
   if(msg.content.startsWith("!"))return;
   const pasta = new Replies("copypastas.json", client);
   pasta.reload();

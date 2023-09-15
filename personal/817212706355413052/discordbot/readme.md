@@ -1,1 +1,0 @@
-did you think i would actually put my discord bot in a discord bot 

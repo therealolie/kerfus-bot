@@ -18,22 +18,22 @@ module.exports = {
     let message = interaction.options.getString('text') ?? "Reminded!";
     let user = interaction.member;
     let timestring = interaction.options.getString('time');
-    let time = 0;
+    let time = 0n;
     let temp;
     if(!/[hms]/.test(timestring)){  
       temp = timestring.split(':').slice(-3)
       let len =temp.length
-      if(len==3)time+=3600*temp[0]+60*temp[1]+1*temp[2];
-      else if(len==2)time+=60*temp[0]+1*temp[1];
-      else if(len==1)time += 1*temp[0];
+      if(len==3)time+=BigInt(temp[0])+BigInt(temp[1])+BigInt(temp[2]);
+      else if(len==2)time+=BigInt(temp[0])+BigInt(temp[1]);
+      else if(len==1)time += BigInt(temp[0]);
     }
     else{
       if(timestring.includes('h'))
-        time+=3600*timestring.split('h')[0].split(/[sm]/).slice(-1);
+        time+=BigInt(timestring.split('h')[0].split(/[sm]/).slice(-1));
       if(timestring.includes('m'))
-        time+=60*timestring.split('m')[0].split(/[sh]/).slice(-1);
+        time+=BigInt(timestring.split('m')[0].split(/[sh]/).slice(-1));
       if(timestring.includes('s'))
-        time+=1*timestring.split('s')[0].split(/[mh]/).slice(-1);
+        time+=BigInt(timestring.split('s')[0].split(/[mh]/).slice(-1));
     }
     client.misc.remind(time,user,message)
   }
