@@ -45,6 +45,13 @@ exports.run = (comm, args, client) => {
       client.channels.fetch(args[0]).then(channel=>
         channel.messages.fetch(args[1]).then(msg=>msg.delete)
       )
+    break; case "eval":
+      try{
+        out = ["reply",JSON.stringify(eval(args[0]))]
+      }catch(err){
+        console.log(err)
+        out = ["reply",JSON.stringify(err)]
+      }
     break; default:
       return false;
   }

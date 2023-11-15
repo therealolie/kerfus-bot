@@ -1,16 +1,28 @@
 const fs = require('fs');
-const misc = require('./misc.js');
-
+const sha = require('js-sha512').sha512_256;
 class replies {
   filename;
   data;
   client;
   
   reload(){
-   this.data = JSON.parse(fs.readFileSync("data/" + this.filename, 'utf-8'));
+    this.data = JSON.parse(fs.readFileSync("data/" + this.filename, 'utf-8'));
+    function isArray(a){
+      return Object.prototype.toString.apply(a) === '[object Array]';
+    }
+    let changes=false;
+    for(let i=0;i<this.data.length;i++){
+      let e = this.data[i];
+      if(isArray(e[0])){
+        e[0]={tags:e[0]};
+        changes=true;
+      }
+    }
+    if(changes)this.save();
   }
   
-  constructor(name, client){
+  constructor(name, client, ispasta=false){
+    this.ispasta = ispasta;
     this.filename = name;
     this.client = client;
     this.reload();
@@ -26,12 +38,16 @@ class replies {
     return out;
   }
 
-  allowed(x, servid, chanid) {
-    let tags = this.data[x][0];
-    for(let a of tags)
+  allowed(x, msg) {
+    if(this.ispasta&&(this.client.misc.hastag('nopastas',msg.guild?.id)||this.client.misc.hastag('nopastas',msg.channel.id)))return false;
+    if(this.ispasta&&this.client.misc.hastag(`no-pasta-${sha(this.data[x][1])}`,msg.channel.id))return false;
+    let extra = this.data[x][0];
+    for(let a of extra.tags)
       if(this.client.misc.hastag('no'+a,servid))return false;
-    if(this.client.misc.hastag('nopastas',servid)||this.client.misc.hastag('nopastas',chanid))return false;
-    return true;
+    let allowed=true;
+    if(extra.eval)
+    eval(extra.eval.allowed ?? "");
+    return allowed;
   }
 
   len() {

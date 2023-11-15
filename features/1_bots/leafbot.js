@@ -99,8 +99,8 @@ let ids = {
   "Methman":"817212706355413052"
 }
 let times = {
-  "swift": 120,
-  "daily": 1440,
+  "swift": 120n,
+  "daily": 1440n,
 }
 let leaves = "Mint Bay Aloe Jade Monstera Yucca Sedum Heuchera Maple Flapjack Agave Echeveria Licorice Tomentosa".split(" ");
 let def = {};
@@ -139,7 +139,7 @@ exports.run = async (msg, client) => {
     if(!time) return;
     let settings = JSON.parse(client.db.v2getuser('settings', msg.interaction.user.id, '{ "autoremind": { "time": 300 } }'));
     if (settings.autoremind.time == -1) return;
-    client.misc.remind(time*60 - settings.autoremind.time, msg.interaction.user, `reminder for your ${temp[3]} package`);
+    client.misc.remind(time*60n - BigInt(settings.autoremind.time), msg.interaction.user, `reminder for your ${temp[3]} package`);
     return;
   }
   else if (msg.interaction.commandName=="garden gift") {

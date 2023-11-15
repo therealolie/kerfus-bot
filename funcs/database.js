@@ -6,7 +6,7 @@ class database {
     this.dirname = name;
   }
 
-  //v1 - depracted, dont use
+  //v1 - deprecated, dont use
   getuser(type, id, def = false) {
     let dir = `${this.dirname}/${type}`;
     let path = `${dir}/${id}`;

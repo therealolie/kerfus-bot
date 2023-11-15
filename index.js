@@ -5,6 +5,7 @@ const client = new Client({ intents: 37377, partials: [1, 3] })
 const database = require('./funcs/database.js')
 client.db = new database(__dirname + '/database/')
 client.webdb = new database(__dirname + '/web/database/')
+client.data = {}
 const misc = client.misc = require('./funcs/misc.js').setup(client)
 require('node:process').on('uncaughtException',e=>console.log(e)) 
 const rest = new REST().setToken(process.env['DISCORD_BOT_SECRET'])

