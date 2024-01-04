@@ -43,7 +43,7 @@ class replies {
     if(this.ispasta&&this.client.misc.hastag(`no-pasta-${sha(this.data[x][1])}`,msg.channel.id))return false;
     let extra = this.data[x][0];
     for(let a of extra.tags)
-      if(this.client.misc.hastag('no'+a,servid))return false;
+      if(this.client.misc.hastag('no'+a,msg.server.id))return false;
     let allowed=true;
     if(extra.eval)
     eval(extra.eval.allowed ?? "");

@@ -489,8 +489,8 @@
   [
     {
       "tags": [],
-      "eval":{
-        "allowed":"if(msg.content.includes('Jej Ekscelencja Doktor Inżynier Najwyższa Wysokość Profesor Nadzwyczajny Barbara Fryc'))allowed=false;"
+      "eval": {
+        "allowed": "if(msg.content.includes('Jej Ekscelencja Doktor Inżynier Najwyższa Wysokość Profesor Nadzwyczajny Barbara Fryc'))allowed=false;"
       }
     },
     "Dla ciebie \"Jej Ekscelencja Doktor Inżynier Najwyższa Wysokość Profesor Nadzwyczajny Barbara Fryc\", młody człowieku",
@@ -498,5 +498,13 @@
     "fryt",
     "barba",
     "basi"
+  ],
+  [
+    {
+      "tags": []
+    },
+    "Chciałbym tylko na chwilę wtrącić. To, co nazywasz Linuksem, to w rzeczywistości GNU / Linux, lub, jak to ostatnio nazywam, GNU plus Linux. Linux nie jest systemem operacyjnym samym w sobie, ale raczej kolejnym wolnym komponentem w pełni funkcjonującego systemu GNU, który jest przydatny dzięki bibliotekom rdzeniowym GNU, narzędziom powłoki i istotnym komponentom systemu obejmującym pełny system operacyjny, zgodnie z definicją POSIX.",
+    "linux",
+    "gnu"
   ]
 ]
