@@ -15,12 +15,17 @@ let fun = async ()=>{
         
         let random = Math.floor(Math.random()*files.length);
         //console.log(random,files[random])
-        await  channel.send('https://kerfus-bot.0lie.repl.co/papiesz?file='+encodeURIComponent(files[random]));
-        newest+=1;
-      }
-      client.db.v2set('other/papiesz.txt',newest);
-  }
-  setInterval(fun,60*1000)//*/
-  fun();
+		  await  channel.send('https://kerfus-bot.0lie.repl.co/papiesz?file='+encodeURIComponent(files[random]));
+		  await channel.send({
+			  files: [
+				  files[random]
+			  ]
+		  })
+		  newest+=1;
+	  }
+	client.db.v2set('other/papiesz.txt',newest);
+}
+setInterval(fun,60*1000)//*/
+fun();
 }
 exports.run=()=>{}
