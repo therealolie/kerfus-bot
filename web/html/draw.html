@@ -27,7 +27,7 @@ for(let x=0;x<n;x++){
       else newcolor=newcolor.slice(0,6);
       console.log(newcolor);
       document.getElementById(m*x+1*y).style= `background-color: #${newcolor};`;
-      xmlHttp.open("GET", 'https://kerfus-bot.0lie.repl.co/draw1?type='+(x*m+y*1)+'&col='+newcolor);
+      xmlHttp.open("GET", '/draw1?type='+(x*m+y*1)+'&col='+newcolor);
       xmlHttp.send();
 
     }
@@ -43,7 +43,7 @@ function update(){
 }
 function get(){
   xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("GET", 'https://kerfus-bot.0lie.repl.co/draw1?type=-1', true);
+  xmlHttp.open("GET", '/draw1?type=-1', true);
   xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
   xmlHttp.addEventListener("load", update);
   xmlHttp.send();

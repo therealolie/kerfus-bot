@@ -35,19 +35,21 @@ app.use(expr.urlencoded({extended:1}))
 	.use(require('./web/firefox.js'))
 	.use(require('./web/setup.js'))
 	.use(require('./web/login.js'))
-	.all(/.*/,(req,res)=>{
-		page = req.url.split('?')[0].split('/')[1]
-		if(fs.existsSync(`web/${req.method}/${page}.js`)){
-			require(`./web/${req.method}/${page}.js`)(req,res);
-			return;
-		}else
-			if(req.method=='GET'&&fs.existsSync(`web/html/${page}.html`)){
-				res.Send(page);
-				return
-			}
-		res.data['popup'] = misc.replace4html(res.data.popup)
-		res.Send(res.data.send);
+let files = fs.readdirSync('web/html/').map(e=>e.slice(0,-5));
+files.forEach(e=>{
+	app.get('/'+e,(req,res)=>{
+		res.Send(e)
 	})
+})
+app.all(/.*/,(req,res)=>{
+	page = req.url.split('?')[0].split('/')[1]
+	if(fs.existsSync(`web/${req.method}/${page}.js`)){
+		require(`./web/${req.method}/${page}.js`)(req,res);
+		return;
+	}
+	res.data['popup'] = misc.replace4html(res.data.popup)
+	res.Send(res.data.send);
+})
 	.listen(2999, () => console.log('host working'));
 // ===================================== BOT =====================================
 client.on('ready', async () => {
