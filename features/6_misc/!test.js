@@ -5,7 +5,7 @@ ALL TEST CODE HERE
 
 
 =================*/
-const misc = require('/home/runner/kerfus-bot/funcs/misc.js');
+const misc = require('../../funcs/misc.js');
 const { EmbedBuilder } = require('discord.js');
 const fs = require('fs');
 const Math = require('math');

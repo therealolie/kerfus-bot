@@ -1,6 +1,6 @@
 const math = require('math')
 
-exports.run = (client,res,req,data) => {
+module.exports = (req,res) => {
   data['send'] = 'admin';
   data["popup"] = "wrong password";
   data["popup type"] = "text";

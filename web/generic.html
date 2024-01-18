@@ -80,7 +80,9 @@
     | <a href="/draw">drawing board</a>
     | <a href="/religia">zadanie z religii</a>
   </nav>
-  <br><br><br><br><br><br><br>
+  <br><br><br>
+  <br><br><br><br>
+  <p id='popup'></p>
   #BODY#
   <br><br>
   <footer>
@@ -128,12 +130,12 @@
   function login(name,pass,next){
     let params = {username:name,password:pass}
     let xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("POST", 'https://kerfus-bot.0lie.repl.co/login', true);
+    xmlHttp.open("POST", '/login', true);
     xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
     xmlHttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
     xmlHttp.addEventListener("load", (inp)=>{
       next(inp.target.responseText);
-    });
+    }); 
     xmlHttp.send(JSON.stringify(params));
   }
 
@@ -148,7 +150,7 @@
     document.getElementById("logout").addEventListener("click", ()=>{
       document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
       document.cookie = "password=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-      window.location.replace('https://kerfus-bot.0lie.repl.co');
+      window.location.replace(window.location.href.split('/').slice(0,3).join('/'));
     });
   });
   
@@ -180,11 +182,4 @@
   #SCRIPT#
 </script>
 
-<script>
-  setInterval((async ()=>{
-  let response = await fetch('https://kerfus-bot.0lie.repl.co/bot-list');
-  let bots = await response.json()
-  for(let a of bots)fetch(a)
-}),5000)
-</script>
 </html>

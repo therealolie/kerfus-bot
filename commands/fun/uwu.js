@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const Seed = require("/home/runner/kerfus-bot/funcs/seed.js");
+const Seed = require("../../funcs/seed.js");
 
 let settings = {
   actions: 0.025,

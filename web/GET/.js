@@ -1,4 +1,4 @@
-exports.run = (client,res,req,data) => {
+module.exports = (req,res) => {
   res.redirect('/index');
   return 'stop';
 }

@@ -5,10 +5,10 @@ for(let i=0;i<n;i++){
   for(let j=0;j<m;j++)
     def[i].push('000000')
 }
-exports.run = (client,res,req,data) => {
+module.exports = (req,res) => {
   if(!('type' in req.query))return 'stop';
   if(req.query.type<0){
-    let ret = client.webdb.v2get('other/drawmap',JSON.stringify(def));
+    let ret = req.app.client.webdb.v2get('other/drawmap',JSON.stringify(def));
     res.send(ret);
   }else{
     if(req.query.type>n*m-1){res.send('ERR: wrong position');return 'stop';}

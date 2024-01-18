@@ -1,4 +1,4 @@
-const Replies = require('/home/runner/kerfus-bot/funcs/pastas.js');
+const Replies = require('../../funcs/pastas.js');
 let pasta;
 
 exports.run = (msg,client) => {

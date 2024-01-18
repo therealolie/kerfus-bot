@@ -1,8 +1,7 @@
-exports.run = (client,res,req,data) => {
-  if(!req.user){
-    data["popup"] = "Error: not logged in";
-    data["popup type"] = "text";
-    return;
-  }
-  data["send"] = 'account';
+module.exports= (req,res) => {
+	if(!req.user){
+		res.data.popup = "Error: not logged in";
+		res.data["popup type"] = "text";
+	}
+	res.Send('account');
 }

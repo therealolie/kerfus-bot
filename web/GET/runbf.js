@@ -1,10 +1,9 @@
-const misc = require('/home/runner/kerfus-bot/funcs/misc.js');
-
-exports.run = (client,res,req,data) => {
-  console.log(req.query)
-  client.misc.log(JSON.stringify(req.query))
-  let output = require('/home/runner/kerfus-bot/funcs/brainf.js').wholesim(req.query.sett.split(''),req.query.runtime,[req.query.input],req.query.code)
-  data["popup"] =[["output"],[output==""?"no output":output]];
-  data["popup type"] = "table";
-  data['send'] = 'brainf';
+module.exports = (req,res) => {
+	console.log(req.query)
+	req.app.client.misc.log(JSON.stringify(req.query))
+	let output = require('../../funcs/brainf.js').wholesim(req.query.sett.split(''),req.query.runtime,[req.query.input],req.query.code)
+	res.data["popup"] =[["output"],[output==""?"no output":output]];
+	res.data["popup type"] = "table";
+	res.data['send'] = 'brainf';
+	res.Send('brainf');
 }
