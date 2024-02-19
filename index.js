@@ -1,5 +1,5 @@
 // ==================================== SETUP ====================================
-let features = {},commands = [],command_handlers = {}
+let features = [],commands = [],command_handlers = {}
 const fs = require('fs'),{Client, REST, Routes} = require("discord.js")
 const client = new Client({ intents: 37377, partials: [1, 3] })
 const database = require('./funcs/database.js')
@@ -16,9 +16,7 @@ function loader(x,y){
 			y(a,b,require(`./${x}/${a}/${b}`))
 }
 loader('features',(a,b,c)=>{
-	a=a.split("_")[0];
-	features[a]=features[a]??[];
-	features[a].push(c);
+	features.push(c);
 })
 loader('commands',(a,b,c)=>{
 	commands.push(c.data.toJSON())
@@ -28,7 +26,7 @@ loader('commands',(a,b,c)=>{
 const expr = require('express')
 const app = expr();
 app.client = client;
-app.use(expr.urlencoded({extended:1}))
+app	.use(expr.urlencoded({extended:1}))
 	.use(require('cors')({origin:'*'}))
 	.use(require('cookie-parser')())
 	.use(expr.json())
@@ -41,40 +39,43 @@ files.forEach(e=>{
 		res.Send(e)
 	})
 })
+let methods = ["GET","POST"]
+methods.forEach(method=>{
+	let files = fs.readdirSync(`web/${method}/`).map(e=>e.slice(0,-3));
+
+	files.forEach(e=>{
+		app[method.toLowerCase()]('/'+e,require(`./web/${method}/${e}.js`));
+	})
+})
 app.all(/.*/,(req,res)=>{
-	page = req.url.split('?')[0].split('/')[1]
-	if(fs.existsSync(`web/${req.method}/${page}.js`)){
-		require(`./web/${req.method}/${page}.js`)(req,res);
-		return;
-	}
+	console.log(req.url)
+	page = req.url.split('?')[0].slice(1)
 	res.data['popup'] = misc.replace4html(res.data.popup)
 	res.Send(res.data.send);
 })
-	.listen(2999, () => console.log('host working'));
+	.listen(8080, () => console.log('host working'));
 // ===================================== BOT =====================================
 client.on('ready', async () => {
 	console.log('bot working')
 	client.starttime = new Date().toUTCString()
-	for(let a in features)
-		for(let b of features[a])
-			if("setup" in b)
-				b.setup(client);
+	for(let a of features)
+		if("setup" in a)
+			a.setup(client);
 	client.db.v2get('other/servers.txt').trim().split('\n').forEach(e=>
 		rest.put(
 			Routes.applicationGuildCommands(client.application.id,e),
 			{body:commands}
 		))
 })
-	.on("guildCreate", g => misc.log(`added to server id ${g.id}`))
-	.on('messageCreate', msg => {
-		for(let a in features)
-			for(let b of features[a])
-				if(b.run(msg,client)=='stop')
-					return
-	})
-	.on('interactionCreate',inter=>{
-		if(!inter.isChatInputCommand())return;
-		command_handlers[inter.commandName].execute(client,inter)
-	})
-	.login(process.env['DISCORD_BOT_SECRET'])
+client.on("guildCreate", g => misc.log(`added to server id ${g.id}`))
+client.on('messageCreate', msg => {
+	for(let a of features)
+		if(a.run(msg,client)=='stop')
+			return
+})
+client.on('interactionCreate',inter=>{
+	if(!inter.isChatInputCommand())return;
+	command_handlers[inter.commandName].execute(client,inter)
+})
+client.login(process.env['DISCORD_BOT_SECRET'])
 // ==================================== TEST  ====================================
