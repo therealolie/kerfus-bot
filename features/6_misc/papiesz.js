@@ -12,7 +12,6 @@ exports.setup = async (client)=>{
 		let newest = 1*client.db.v2get('other/papiesz.txt',`${date}`);
 		//console.log(time,date,newest)
 		while(newest<date){
-
 			let random = Math.floor(Math.random()*files.length);
 			//console.log(random,files[random])
 			await channel.send({
@@ -21,7 +20,6 @@ exports.setup = async (client)=>{
 					name: 'papaj.jpg',
 				}]
 			})
-			// channel.send('https://kerfus-bot.0lie.repl.co/papiesz?file='+encodeURIComponent(files[random]));
 			newest+=1;
 		}
 		client.db.v2set('other/papiesz.txt',newest);
